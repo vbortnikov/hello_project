@@ -1,0 +1,26 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: hello-app
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: hello-app
+      labels:
+        app: hello-app
+    spec:
+      containers:
+      - name: hello-app
+        image: vasily22/hello:v1.0.0
+        ports:
+          - containerPort: 8000
+            protocol: TCP
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 8000
