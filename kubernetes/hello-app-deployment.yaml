@@ -12,15 +12,17 @@ spec:
     spec:
       containers:
       - name: hello-app
-        image: vasily22/hello:v1.0.0
+        image: vasily22/hello:v1.0.1
         ports:
           - containerPort: 8000
             protocol: TCP
         livenessProbe:
+          periodSeconds: 30
           httpGet:
-            path: /health
+            path: /health/
             port: 8000
         readinessProbe:
+          periodSeconds: 30
           httpGet:
-            path: /ready
+            path: /ready/
             port: 8000

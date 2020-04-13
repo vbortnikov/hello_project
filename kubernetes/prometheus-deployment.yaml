@@ -1,0 +1,37 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: prometheus
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: prometheus
+      labels:
+        app: prometheus
+    spec:
+      containers:
+      - name: prometheus
+        image: prom/prometheus:v2.17.1
+        ports:
+          - containerPort: 9090
+            protocol: TCP
+        livenessProbe:
+          periodSeconds: 30
+          httpGet:
+            path: /-/healthy
+            port: 9090
+        readinessProbe:
+          periodSeconds: 30
+          httpGet:
+            path: /-/ready/
+            port: 9090
+        volumeMounts:
+        - name: config
+          mountPath: /etc/prometheus
+          readOnly: true
+
+      volumes:
+      - name: config
+        configMap:
+          name: prometheus-config

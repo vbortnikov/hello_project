@@ -1,0 +1,24 @@
+{
+  "id": 2,
+  "orgId": 1,
+  "name": "hello_prometheus",
+  "type": "prometheus",
+  "typeLogoUrl": "",
+  "access": "proxy",
+  "url": "http://localhost:9090",
+  "password": "",
+  "user": "",
+  "database": "",
+  "basicAuth": false,
+  "basicAuthUser": "",
+  "basicAuthPassword": "",
+  "withCredentials": false,
+  "isDefault": true,
+  "jsonData": {
+    "httpMethod": "GET",
+    "keepCookies": []
+  },
+  "secureJsonFields": {},
+  "version": 10,
+  "readOnly": false
+}
