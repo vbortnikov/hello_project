@@ -1,0 +1,49 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: grafana
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: grafana
+      labels:
+        app: grafana
+    spec:
+      containers:
+      - name: grafana
+        image: grafana/grafana:6.7.2
+        ports:
+          - containerPort: 3000
+            protocol: TCP
+        livenessProbe:
+          periodSeconds: 30
+          httpGet:
+            path: /api/health
+            port: 3000
+        readinessProbe:
+          periodSeconds: 30
+          httpGet:
+            path: /
+            port: 3000
+        volumeMounts:
+        - name: datasource-provisioning
+          mountPath: /etc/grafana/provisioning/datasources
+          readOnly: true
+        - name: dashboard-provisioning
+          mountPath: /etc/grafana/provisioning/dashboards
+          readOnly: true
+        - name: dashboard-source
+          mountPath: /etc/grafana/dashboards
+          readOnly: true
+
+      volumes:
+      - name: datasource-provisioning
+        configMap:
+          name: hello-datasource
+      - name: dashboard-provisioning
+        configMap:
+          name: hello-dashboard-prv
+      - name: dashboard-source
+        configMap:
+          name: hello-dashboard-src
