@@ -3,7 +3,9 @@ kind: Service
 metadata:
   name: prometheus
 spec:
+  type: NodePort
   selector:
     app: prometheus
   ports:
   - port: 9090
+  

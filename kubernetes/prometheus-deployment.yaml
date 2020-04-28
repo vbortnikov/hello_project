@@ -24,7 +24,7 @@ spec:
         readinessProbe:
           periodSeconds: 30
           httpGet:
-            path: /-/ready/
+            path: /-/ready
             port: 9090
         volumeMounts:
         - name: config

@@ -42,5 +42,5 @@ data:
         # scheme defaults to 'http'.
 
         static_configs:
-        # refer to hello application service by environment varible in kubernetes
+        # reference to hello application service by environment varible in kubernetes
         - targets: ["hello-app:8000"]

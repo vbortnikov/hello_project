@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: http-ingress
+spec:
+  rules:
+  - host: hello-app.com
+    http:
+      paths:
+      - path: /*
+        backend:
+          serviceName: hello-app
+          servicePort: 8000
+  - host: hello-prometheus.com
+    http:
+      paths:
+      - path: /*
+        backend:
+          serviceName: prometheus
+          servicePort: 9090
+  - host: hello-grafana.com
+    http:
+      paths:
+      - path: /*
+        backend:
+          serviceName: grafana
+          servicePort: 3000

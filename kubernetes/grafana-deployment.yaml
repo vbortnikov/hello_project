@@ -24,7 +24,7 @@ spec:
         readinessProbe:
           periodSeconds: 30
           httpGet:
-            path: /
+            path: /api/health
             port: 3000
         volumeMounts:
         - name: datasource-provisioning
