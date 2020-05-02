@@ -14,19 +14,21 @@ __hello-app__ (TCP port 8000) -> __Prometheus__ (TCP port 9090) -> __Grafana__ (
 / - основная страница, отображает состояние приложения и позволяет его изменять.  
 /ready - проверка готовности приложения  
 /health - проверка здоровья приложения  
-/metrics - тестовые метрики.   
+/metrics - тестовые метрики (состояние здоровья, счетчик запросов, синусоида и бонусом метрики от библиотеки client_python).   
 Метрики формируются как с использованием [Prometheus Python Client](https://github.com/prometheus/client_python), так и самостоятельно.  
-backend, код Python находится в [views.py](hello_app/hello_project/hello_app/views.py)  
-frontend, HTML+JavaScript - [index.html](hello_app/hello_project/hello_app/templates/index.html)  
+Backend (код Python) находится в [views.py](hello_app/hello_project/hello_app/views.py)  
+Frontend (HTML+JavaScript) - [index.html](hello_app/hello_project/hello_app/templates/index.html)  
 ### Запуск в Kubernets  
 Текущая конфигурация тестировалась только под [Google Kubernetes Engine](https://cloud.google.com/kubernetes-engine)  
 Hello-app контейнезтровано и доступно через [Docker Hub](https://hub.docker.com/repository/docker/vasily22/hello)  
 Для Prometheus используется стандартный образ, без изменений [prom/prometheus:v2.17.1](https://hub.docker.com/r/prom/prometheus)  
 Grafana также стартует из стандартного образа [grafana/grafana:6.7.2](https://hub.docker.com/r/grafana/grafana)  
 ConfigMap c конфигурацией Prometheus монтирутся по стандартному пути _/etc/etc/prometheus/prometheus.yaml_  
-Графана конфигурируется (DataSource & Dashboard) с помощью механизма Provisioning. (ConfigMaps в /etc/grafana/provisioning, /etc/grafana/dashboards)  
+Графана конфигурируется (DataSource & Dashboard) с помощью механизма Provisioning. (ConfigMaps в _/etc/grafana/provisioning, /etc/grafana/dashboards_)  
 В результате Datasource импортируется в БД с признаком read_only.  
 (При необходимости это легко исправить напрямую в БД утилитой _sqlite3_)
 Запуск кластера осуществяется командой `kubectl apply -f ./kubernetes`  
-Ingress поднимается через несколько минут. Для доступа к приложениям необходимо прописать виртуальные хосты в файл /etc/hosts
-34.95.79.24 hello-app.com hello-prometheus.com hello-grafana.com
+Ingress поднимается через несколько минут. Для доступа к приложениям необходимо прописать виртуальные хосты в файл _/etc/hosts_:  
+_34.95.79.24 hello-app.com hello-prometheus.com hello-grafana.com_  
+_34.95.79.24_ - IP адрес из команды `kubectl get ingress`  
+Далнейший доступ к hello-app, prometheus, Grafana осуществляется через стандартный порт 80 по адресам _hello-app.com, hello-prometheus.com, hello-grafana.com,_ соответсвенно.
