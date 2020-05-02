@@ -26,9 +26,9 @@ Grafana также стартует из стандартного образа [
 ConfigMap c конфигурацией Prometheus монтирутся по стандартному пути _/etc/etc/prometheus/prometheus.yaml_  
 Графана конфигурируется (DataSource & Dashboard) с помощью механизма Provisioning. (ConfigMaps в _/etc/grafana/provisioning, /etc/grafana/dashboards_)  
 В результате Datasource импортируется в БД с признаком read_only.  
-(При необходимости это легко исправить напрямую в БД утилитой _sqlite3_)
+(При необходимости это легко исправить напрямую в БД утилитой _sqlite3_).  
 Запуск кластера осуществяется командой `kubectl apply -f ./kubernetes`  
 Ingress поднимается через несколько минут. Для доступа к приложениям необходимо прописать виртуальные хосты в файл _/etc/hosts_:  
 _34.95.79.24 hello-app.com hello-prometheus.com hello-grafana.com_  
 _34.95.79.24_ - IP адрес из команды `kubectl get ingress`  
-Далнейший доступ к hello-app, prometheus, Grafana осуществляется через стандартный порт 80 по адресам _hello-app.com, hello-prometheus.com, hello-grafana.com,_ соответсвенно.
+Дальнейший доступ к Hello-app, Prometheus, Grafana осуществляется через стандартный порт 80 по адресам _hello-app.com, hello-prometheus.com, hello-grafana.com,_ соответсвенно.
