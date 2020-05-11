@@ -32,3 +32,9 @@ Ingress поднимается через несколько минут. Для 
 _34.95.79.24 hello-app.com hello-prometheus.com hello-grafana.com_  
 _34.95.79.24_ - IP адрес из команды `kubectl get ingress`  
 Дальнейший доступ к Hello-app, Prometheus, Grafana осуществляется через стандартный порт 80 по адресам _hello-app.com, hello-prometheus.com, hello-grafana.com,_ соответсвенно.
+### Запуск в Docker Swarm
+docker-compose.yaml и файлы конфигурации приложений находятся в каталоге [compose](compose)  
+Текущая конфигурация работает с Docker Swarm и не работает с [Docker-compose](https://github.com/docker/compose/issues/5110)   Конфигурация тестировалась с Docker Server Version: 19.03.8-ce на кластере с одной нодой.    
+Запуск кластера - `cd compose; docker stack deploy --compose-file docker-compose.yaml hello`  
+Подключиться к сервисам можно введя в браузере адрес 127.0.0.1 и соответствующий порт.  
+Конфигурация аналогична Kubernetes конфигурации.  
