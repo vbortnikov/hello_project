@@ -1,0 +1,39 @@
+version: "3.3"
+
+services:
+
+  hello-app:
+    image: vasily22/hello:v1.0.1
+    ports:
+      - "8000:8000"
+
+  prometheus:
+    image: prom/prometheus:v2.17.1
+    ports:
+      - "9090:9090"
+    configs:
+      - source: prometheus-config
+        target: /etc/prometheus/prometheus.yml
+  grafana:
+    image: grafana/grafana:6.7.2
+    ports:
+      - "3000:3000"
+    configs:
+      - source: grafana-datasource-prv
+        target: /etc/grafana/provisioning/datasources/grafana-datasource.yaml
+      - source: grafana-dashborard-prv
+        target: /etc/grafana/provisioning/dashboards/hello-dashboard.yaml
+        uid: '472'
+      - source: grafana-dashborard-src
+        target: /etc/grafana/dashboards/hello-dashboard.json
+        uid: '472'
+
+configs:
+  prometheus-config:
+    file: ./prometheus-cfg.yaml
+  grafana-datasource-prv:
+    file: ./grafana-datasource-prv.yaml
+  grafana-dashborard-prv:
+    file: ./grafana-dashboard-prv.yaml
+  grafana-dashborard-src:
+    file: ./grafana-dashboard-src.json

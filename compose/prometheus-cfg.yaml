@@ -36,4 +36,4 @@ scrape_configs:
 
     static_configs:
     # refer to hello application service by environment varible in kubernetes
-    - targets: ["$HELLO_APP_SERVICE_HOST:$HELLO_APP_SERVICE_PORT"]
+    - targets: ["hello-app:8000"]
