@@ -24,12 +24,12 @@ Frontend (HTML+JavaScript) - [index.html](hello_app/hello_project/hello_app/temp
 Образ Hello-app приложения можно загрузить с [Docker Hub](https://hub.docker.com/repository/docker/vasily22/hello)  
 Для Prometheus используется стандартный образ, без изменений [prom/prometheus:v2.17.1](https://hub.docker.com/r/prom/prometheus)  
 Grafana также стартует из стандартного образа [grafana/grafana:6.7.2](https://hub.docker.com/r/grafana/grafana)  
-ConfigMap c конфигурацией Prometheus монтирутся по стандартному пути _/etc/etc/prometheus/prometheus.yaml_  
+ConfigMap c конфигурацией Prometheus монтирутся по стандартному пути _/etc/prometheus/prometheus.yaml_  
 Графана конфигурируется (DataSource & Dashboard) с помощью механизма Provisioning. (ConfigMaps в _/etc/grafana/provisioning, /etc/grafana/dashboards_)  
 В результате Datasource импортируется в БД с признаком read_only.  
 (При необходимости это легко исправить напрямую в БД утилитой _sqlite3_).  
 Запуск кластера осуществяется командой `kubectl apply -f ./kubernetes`  
-Ingress поднимается через несколько минут. Для доступа к приложениям необходимо прописать виртуальные хосты в файл _/etc/hosts_:  
+Ingress активируется через несколько минут. Для доступа к приложениям необходимо прописать виртуальные хосты в файл _/etc/hosts_:  
 _34.95.79.24 hello-app.com hello-prometheus.com hello-grafana.com_  
 _34.95.79.24_ - IP адрес из команды `kubectl get ingress`  
 Дальнейший доступ к Hello-app, Prometheus, Grafana осуществляется с помощью браузера через стандартный порт 80 по адресам _hello-app.com, hello-prometheus.com, hello-grafana.com,_ соответсвенно.
