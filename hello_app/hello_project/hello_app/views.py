@@ -29,7 +29,7 @@ def index(request):
                 return HttpResponse(siteState[item], status=201)
         return HttpResponse(status=404, reason="Key not found in siteState dictionary")
     else:
-        return HttpResponse(status=404, reason="Only GET and POST methods are allowed")
+        return HttpResponse(status=404, reason="Only GET or POST methods are allowed")
 
 
 def metrics(request):
