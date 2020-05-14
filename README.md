@@ -9,7 +9,7 @@ __hello-app__ (TCP port 8000) -> __Prometheus__ (TCP port 9090) -> __Grafana__ (
 Хранит состояние здоровья и готовности, которые можно изменять через web-интерфейс (javascript AJAX), формирует метрики.  
 
 Запуск приложения - `manage.py runserver [address_to_bind:port_number]`  
-По умолчанию стартует и доступно по адресу ***http://localhost:8000***  
+По умолчанию стартует и доступно по адресу ***\http://localhost:8000***  
 Образ приложения строится с помощью [Dockerfile](hello_app/hello_project/Dockerfile).  
 ##### endpoints:  
 / - основная страница, отображает состояние приложения и позволяет его изменять.  
@@ -41,3 +41,4 @@ docker-compose.yaml и файлы конфигурации приложений 
 Запуск кластера - `cd compose; docker stack deploy --compose-file docker-compose.yaml hello`  
 Подключиться к сервисам можно введя в браузере адрес 127.0.0.1 и соответствующий номер порта.  
 Конфигурация микросервисов такая же как и в случае с Kubernetes.  
+
