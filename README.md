@@ -19,7 +19,7 @@ __hello-app__ (TCP port 8000) -> __Prometheus__ (TCP port 9090) -> __Grafana__ (
 Метрики формируются как с использованием [Prometheus Python Client](https://github.com/prometheus/client_python), так и самостоятельно.  
 Backend (код Python) находится в [views.py](hello_app/hello_project/hello_app/views.py)  
 Frontend (HTML+JavaScript) - [index.html](hello_app/hello_project/hello_app/templates/index.html)  
-Скриншот приложения:  
+Основная страница приложения выглядит так:  
 ![](hello_app_screen.png)
 ### Запуск в Kubernetes  
 Текущая конфигурация тестировалась в кластере [Google Kubernetes Engine](https://cloud.google.com/kubernetes-engine) состоящем из трех нод.    
