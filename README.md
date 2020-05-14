@@ -15,7 +15,7 @@ __hello-app__ (TCP port 8000) -> __Prometheus__ (TCP port 9090) -> __Grafana__ (
 / - основная страница, отображает состояние приложения и позволяет его изменять.  
 /ready - проверка готовности приложения  
 /health - проверка здоровья приложения  
-/metrics - тестовые метрики (состояние здоровья, счетчик запросов, синусоида и бонусом метрики от библиотеки client_python).   
+/metrics - тестовые метрики (состояние здоровья, счетчик запросов, синусоида и дополнительные метрики библиотеки client_python).   
 Метрики формируются как с использованием [Prometheus Python Client](https://github.com/prometheus/client_python), так и самостоятельно.  
 Backend (код Python) находится в [views.py](hello_app/hello_project/hello_app/views.py)  
 Frontend (HTML+JavaScript) - [index.html](hello_app/hello_project/hello_app/templates/index.html)  
@@ -42,7 +42,7 @@ docker-compose.yaml и файлы конфигурации приложений 
 Конфигурация тестировалась с Docker Server Version: 19.03.8-ce на кластере с одной нодой.    
 Запуск кластера - `cd compose; docker stack deploy --compose-file docker-compose.yaml hello`  
 Подключиться к сервисам можно введя в браузере адрес 127.0.0.1 и соответствующий номер порта.  
-Конфигурация микросервисов такая же как и в случае с Kubernetes.  
+Конфигурация микросервисов такая же, как и в случае с Kubernetes.  
     
  В результате должны получить дашборд подобный следующему:
  ![](dashboard_screen.png)
