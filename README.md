@@ -19,6 +19,8 @@ __hello-app__ (TCP port 8000) -> __Prometheus__ (TCP port 9090) -> __Grafana__ (
 Метрики формируются как с использованием [Prometheus Python Client](https://github.com/prometheus/client_python), так и самостоятельно.  
 Backend (код Python) находится в [views.py](hello_app/hello_project/hello_app/views.py)  
 Frontend (HTML+JavaScript) - [index.html](hello_app/hello_project/hello_app/templates/index.html)  
+Скриншот приложения:  
+![](hello_app_screen.png)
 ### Запуск в Kubernetes  
 Текущая конфигурация тестировалась в кластере [Google Kubernetes Engine](https://cloud.google.com/kubernetes-engine) состоящем из трех нод.    
 Образ Hello-app приложения можно загрузить с [Docker Hub](https://hub.docker.com/repository/docker/vasily22/hello)  
@@ -41,8 +43,7 @@ docker-compose.yaml и файлы конфигурации приложений 
 Запуск кластера - `cd compose; docker stack deploy --compose-file docker-compose.yaml hello`  
 Подключиться к сервисам можно введя в браузере адрес 127.0.0.1 и соответствующий номер порта.  
 Конфигурация микросервисов такая же как и в случае с Kubernetes.  
-   
     
- В рещультате должны получить дашборд подобный следующему:
+ В результате должны получить дашборд подобный следующему:
  ![](dashboard_screen.png)
 
